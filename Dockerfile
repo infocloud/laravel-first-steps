@@ -2,6 +2,8 @@ FROM php:7
 RUN apt-get update -y && apt-get install -y openssl zlib1g-dev
 RUN docker-php-ext-install -j "$(nproc)" mbstring
 RUN apt-get install -y zip unzip git
+RUN curl -L https://phar.phpunit.de/phpunit.phar -o /usr/local/bin/phpunit
+RUN chmod +x /usr/local/bin/phpunit
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 WORKDIR /app
 COPY composer.json /app

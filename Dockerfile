@@ -1,6 +1,6 @@
 FROM php:7
 RUN apt-get update -y && apt-get install -y openssl zlib1g-dev
-RUN apt-get install -y php7.0-mbstring
+RUN docker-php-ext-install -j "$(nproc)" mbstring
 WORKDIR /app
 COPY composer.json /app
 RUN composer install
